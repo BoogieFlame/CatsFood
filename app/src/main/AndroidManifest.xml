@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CatsFood">
         <activity android:name=".DetailCat"></activity>
-        <activity android:name=".MyCat" />
+        <activity android:name=".MyCatFood" />
         <activity android:name=".MainMenu" />
         <activity android:name=".MainActivity">
             <intent-filter>

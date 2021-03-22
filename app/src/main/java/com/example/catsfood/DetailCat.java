@@ -10,5 +10,8 @@ public class DetailCat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_cat);
+
+        //GET "create" бинарная обработка в зависимости от креате
+
     }
 }

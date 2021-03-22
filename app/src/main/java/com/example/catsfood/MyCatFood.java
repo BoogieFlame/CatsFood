@@ -14,15 +14,16 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MyCat extends AppCompatActivity {
+public class MyCatFood extends AppCompatActivity {
 
     RecyclerView rv_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_cat);
+        setContentView(R.layout.activity_my_cat_food);
 
         rv_cat = findViewById(R.id.rv_cat);
+        // туду запихать данные котов с файрбейс
     }
 
     public static class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
@@ -47,6 +48,7 @@ public class MyCat extends AppCompatActivity {
             holder.age.setText(values.get(position).age);
             holder.weight.setText(values.get(position).weight);
             holder.is_male.setText(values.get(position).is_male ? "Кот" : "Кошка");
+            holder.food.setText(String.valueOf(values.get(position).food()));
 
             holder.itemView.setTag(values.get(position));
             holder.itemView.setOnClickListener(onClickListener);
@@ -62,6 +64,7 @@ public class MyCat extends AppCompatActivity {
             final TextView age;
             final TextView weight;
             final TextView is_male;
+            final TextView food;
 
             ViewHolder(View view) {
                 super(view);
@@ -69,6 +72,7 @@ public class MyCat extends AppCompatActivity {
                 age = view.findViewById(R.id.age_cat);
                 weight = view.findViewById(R.id.weight_cat);
                 is_male = view.findViewById(R.id.sex_cat);
+                food = view.findViewById(R.id.food_cat);
             }
         }
         final private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -78,6 +82,7 @@ public class MyCat extends AppCompatActivity {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, DetailCat.class);
                 intent.putExtra("id", item.id);
+                intent.putExtra("create", "UPDATE");
                 context.startActivity(intent);
             }
         };

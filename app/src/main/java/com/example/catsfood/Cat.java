@@ -14,4 +14,8 @@ public class Cat {
         weight = w;
         is_male = i;
     }
+
+    public double food(){
+        return (age * 0.1 + weight * 0.3) * (is_male ? 1 : 0.9);
+    }
 }
