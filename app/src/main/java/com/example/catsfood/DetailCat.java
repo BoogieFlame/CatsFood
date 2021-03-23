@@ -32,23 +32,34 @@ public class DetailCat extends AppCompatActivity {
 
         Intent intent = getIntent();
         String s = intent.getStringExtra("create");
+
         if (s.equals("CREATE"))
         {
             update_create.setText("Создать");
             update_create.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // создать
+                    Cat cat = new Cat(Data.mycat.size(),inp_name.getText() + "", Long.parseLong(inp_age.getText() + ""), Long.parseLong(inp_weight.getText() + ""), sw_is_male.isChecked());
+                    Data.mycat.add(cat);
+                    Data.update();
                 }
             });
         }
         else
         {
+            int id = intent.getIntExtra("id", 0);
+            Cat cat = Data.mycat.get(id);
+            sw_is_male.setChecked(cat.is_male);
+            inp_name.setText(cat.name);
+            inp_age.setText(String.valueOf(cat.age));
+            inp_weight.setText(String.valueOf(cat.weight));
             update_create.setText("Обновить");
             update_create.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // обновить
+                    Cat cat = new Cat(id,inp_name.getText() + "", Long.parseLong(inp_age.getText() + ""), Long.parseLong(inp_weight.getText() + ""), sw_is_male.isChecked());
+                    Data.mycat.set(id, cat);
+                    Data.update();
                 }
             });
         }
