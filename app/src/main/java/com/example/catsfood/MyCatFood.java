@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MyCatFood extends AppCompatActivity {
 
-    RecyclerView rv_cat;
+    public static RecyclerView rv_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

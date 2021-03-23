@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 public class DetailCat extends AppCompatActivity {
 
@@ -42,6 +43,7 @@ public class DetailCat extends AppCompatActivity {
                     Cat cat = new Cat(Data.mycat.size(),inp_name.getText() + "", Long.parseLong(inp_age.getText() + ""), Long.parseLong(inp_weight.getText() + ""), sw_is_male.isChecked());
                     Data.mycat.add(cat);
                     Data.update();
+                    Toast.makeText(getApplicationContext(), "Кот создан", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -60,6 +62,8 @@ public class DetailCat extends AppCompatActivity {
                     Cat cat = new Cat(id,inp_name.getText() + "", Long.parseLong(inp_age.getText() + ""), Long.parseLong(inp_weight.getText() + ""), sw_is_male.isChecked());
                     Data.mycat.set(id, cat);
                     Data.update();
+                    MyCatFood.rv_cat.setAdapter(new MyCatFood.CatAdapter(Data.mycat));
+                    Toast.makeText(getApplicationContext(), "Данные кота обновлены", Toast.LENGTH_LONG).show();
                 }
             });
         }
