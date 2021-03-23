@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     TextView email;
-    TextView login_view;
     TextView password;
     Button login;
     Button register;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         email = (TextView) findViewById(R.id.email);
-        login_view = (TextView) findViewById(R.id.login_view);
         password = (TextView) findViewById(R.id.password);
 
         login = (Button) findViewById(R.id.login);
@@ -40,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                mAuth = null;
                 if (TextUtils.isEmpty(email.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Нет почты", Toast.LENGTH_LONG).show();
                     return;
@@ -55,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    Data.exit();
                                     Data.myid = mAuth.getUid();
                                     Data.init();
                                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
@@ -86,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    Data.exit();
                                     Data.myid = mAuth.getUid();
                                     Data.init();
-                                    login_view.setText(mAuth.getCurrentUser().getEmail());
                                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
                                     startActivity(intent);
                                 }
@@ -107,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mAuth.getCurrentUser() != null)
                 {
+                    Data.exit();
                     Data.myid = mAuth.getUid();
                     Data.init();
                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null)
         {
-            login_view.setText(mAuth.getCurrentUser().getEmail());
+            Data.exit();
             Data.myid = mAuth.getUid();
             Data.init();
         }

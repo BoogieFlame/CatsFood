@@ -10,13 +10,6 @@
     app:layoutDescription="@xml/login_scene"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/login_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Зарегистрирйтесь или войдите"
-        android:textSize="18sp" />
-
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
