@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
+                mAuth = null;
                 if (TextUtils.isEmpty(email.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Нет почты", Toast.LENGTH_LONG).show();
                     return;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    Data.myid = mAuth.getUid();
+                                    Data.init();
                                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
                                     startActivity(intent);
                                 } else {
@@ -83,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    Data.myid = mAuth.getUid();
+                                    Data.init();
                                     login_view.setText(mAuth.getCurrentUser().getEmail());
                                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
                                     startActivity(intent);
@@ -102,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mAuth.getCurrentUser() != null)
                 {
+                    Data.myid = mAuth.getUid();
+                    Data.init();
                     Intent intent = new Intent(MainActivity.this, MainMenu.class);
                     startActivity(intent);
                 }
@@ -117,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null)
         {
             login_view.setText(mAuth.getCurrentUser().getEmail());
+            Data.myid = mAuth.getUid();
+            Data.init();
         }
     }
 }

@@ -27,7 +27,6 @@
             android:id="@+id/inp_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Имя" />

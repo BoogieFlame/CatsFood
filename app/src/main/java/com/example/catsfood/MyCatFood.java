@@ -2,6 +2,7 @@ package com.example.catsfood;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -23,7 +24,8 @@ public class MyCatFood extends AppCompatActivity {
         setContentView(R.layout.activity_my_cat_food);
 
         rv_cat = findViewById(R.id.rv_cat);
-        // туду запихать данные котов с файрбейс
+        rv_cat.setLayoutManager(new LinearLayoutManager(this));
+        rv_cat.setAdapter(new CatAdapter(Data.mycat));
     }
 
     public static class CatAdapter extends RecyclerView.Adapter<CatAdapter.ViewHolder> {
@@ -44,11 +46,11 @@ public class MyCatFood extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
 
-            holder.name.setText(values.get(position).name);
-            holder.age.setText(values.get(position).age);
-            holder.weight.setText(values.get(position).weight);
-            holder.is_male.setText(values.get(position).is_male ? "Кот" : "Кошка");
-            holder.food.setText(String.valueOf(values.get(position).food()));
+            holder.name.setText("Имя:" + values.get(position).name);
+            holder.age.setText("Возраст:" + String.valueOf(values.get(position).age));
+            holder.weight.setText("Вес:" + String.valueOf(values.get(position).weight));
+            holder.is_male.setText("Пол:" + (values.get(position).is_male ? "Кот" : "Кошка"));
+            holder.food.setText("Корма на сегодня:" + String.valueOf(values.get(position).food()));
 
             holder.itemView.setTag(values.get(position));
             holder.itemView.setOnClickListener(onClickListener);

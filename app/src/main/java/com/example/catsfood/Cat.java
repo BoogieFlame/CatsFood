@@ -3,11 +3,11 @@ package com.example.catsfood;
 public class Cat {
     public int id;
     public String name;
-    public int age;
-    public int weight;
+    public long age;
+    public long weight;
     public boolean is_male;
 
-    Cat(int id, String n, int a, int w, boolean i) {
+    Cat(int id, String n, long a, long w, boolean i) {
         this.id = id;
         name = n;
         age = a;
